@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山二医见习医院一览 · by VIVI</title>
+<meta name="description" content="山东第二医科大学见习点经验汇总：临沂、青州益都、济南五院、安丘、960 医院、高密、附院、昌乐、济南四院、诸城十个见习医院的生活与学习情况，附 116 张实拍照片。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+<style>
+  :root{
+    --bg:#070b14;
+    --card:rgba(255,255,255,.045);
+    --card-hover:rgba(255,255,255,.07);
+    --border:rgba(255,255,255,.09);
+    --border-strong:rgba(255,255,255,.16);
+    --text:#e8edf6;
+    --text-dim:#9aa7bd;
+    --text-faint:#6b7994;
+    --accent:#38bdf8;
+    --accent2:#2dd4bf;
+    --good:#34d399;
+    --bad:#f87171;
+    --warn-bg:rgba(251,222,40,.09);
+    --warn-border:rgba(251,222,40,.35);
+    --warn-text:#fde047;
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  body::before,body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  }
+  body::before{
+    background:
+      radial-gradient(900px 500px at 12% -5%, rgba(45,212,191,.13), transparent 60%),
+      radial-gradient(1000px 600px at 95% 15%, rgba(56,189,248,.10), transparent 60%),
+      radial-gradient(800px 600px at 50% 110%, rgba(99,102,241,.08), transparent 60%);
+  }
+  ::selection{background:rgba(45,212,191,.35)}
+
+  /* ---------- progress bar ---------- */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:1000;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    box-shadow:0 0 12px rgba(56,189,248,.7);transition:width .1s linear}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:900;
+    background:rgba(7,11,20,.72);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 20px}
+  .nav-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;white-space:nowrap}
+  .nav-brand .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));box-shadow:0 0 10px rgba(45,212,191,.8)}
+  .nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;-webkit-overflow-scrolling:touch}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{
+    color:var(--text-dim);text-decoration:none;font-size:13.5px;padding:6px 13px;border-radius:99px;
+    white-space:nowrap;transition:all .25s;border:1px solid transparent;
+  }
+  .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+  .nav-links a.active{
+    color:#04121a;font-weight:700;
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+    box-shadow:0 4px 18px rgba(45,212,191,.35);
+  }
+
+  /* ---------- hero ---------- */
+  header{position:relative;z-index:1;padding:150px 20px 70px;text-align:center}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent2);
+    border:1px solid rgba(45,212,191,.35);background:rgba(45,212,191,.08);
+    padding:6px 16px;border-radius:99px;margin-bottom:26px;letter-spacing:.5px;
+  }
+  .hero-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent2);box-shadow:0 0 8px var(--accent2)}
+  h1{
+    font-size:clamp(34px,6vw,58px);font-weight:800;letter-spacing:1px;line-height:1.25;
+    background:linear-gradient(120deg,#f0f6ff 30%,var(--accent) 60%,var(--accent2) 85%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero-sub{margin-top:14px;color:var(--text-dim);font-size:16px}
+  .hero-sub b{color:var(--text)}
+  .hero-stats{display:flex;justify-content:center;gap:14px;margin-top:32px;flex-wrap:wrap}
+  .stat{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:14px 26px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    min-width:110px;
+  }
+  .stat b{display:block;font-size:26px;background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .stat span{font-size:12.5px;color:var(--text-faint)}
+  .disclaimer{
+    max-width:760px;margin:38px auto 0;text-align:left;
+    background:var(--warn-bg);border:1px solid var(--warn-border);
+    border-radius:14px;padding:16px 20px;display:flex;gap:12px;align-items:flex-start;
+  }
+  .disclaimer .icon{font-size:20px;line-height:1.5}
+  .disclaimer p{font-size:13.5px;color:var(--warn-text);line-height:1.7}
+  .hero-note{margin-top:14px;color:var(--text-faint);font-size:13px}
+
+  /* ---------- layout ---------- */
+  main{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 20px 40px}
+  section.hospital{margin-bottom:46px;scroll-margin-top:90px}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    padding:clamp(22px,4vw,40px);position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent 5%,rgba(56,189,248,.5),rgba(45,212,191,.5),transparent 95%);
+  }
+  .sec-head{display:flex;align-items:center;gap:16px;margin-bottom:10px}
+  .sec-num{
+    flex:none;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;
+    font-weight:800;font-size:20px;color:#04121a;
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+    box-shadow:0 8px 24px rgba(45,212,191,.3);
+  }
+  .sec-head h2{font-size:clamp(21px,3.4vw,28px);font-weight:800;letter-spacing:.5px}
+  .sec-head .tag{font-size:12px;color:var(--text-faint);font-weight:400;margin-top:2px}
+  .sec-desc{color:var(--text-dim);font-size:14.5px;margin-bottom:8px}
+
+  /* ---------- prose & lists ---------- */
+  .prose p{margin:14px 0;color:var(--text);font-size:15px}
+  .prose p.dim{color:var(--text-dim)}
+  .prose strong{color:#fff}
+  h3.sub{
+    margin:34px 0 6px;font-size:17.5px;font-weight:700;display:flex;align-items:center;gap:10px;color:#dbe7f5;
+  }
+  h3.sub::before{content:"";width:5px;height:18px;border-radius:3px;background:linear-gradient(180deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(56,189,248,.5)}
+  .note-box{
+    background:rgba(56,189,248,.06);border-left:3px solid var(--accent);
+    border-radius:0 12px 12px 0;padding:12px 18px;margin:16px 0;font-size:14px;color:var(--text-dim);
+  }
+  .note-box b{color:var(--text)}
+  .verify-pill{
+    display:inline-flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px;
+  }
+  .verify-pill span{
+    font-size:12.5px;padding:4px 12px;border-radius:99px;
+    background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);color:var(--accent2);
+  }
+
+  /* ---------- pros / cons ---------- */
+  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  @media(max-width:760px){.pc-grid{grid-template-columns:1fr}}
+  .pc-col{border-radius:16px;padding:18px 20px;border:1px solid}
+  .pc-col.good{background:rgba(52,211,153,.05);border-color:rgba(52,211,153,.25)}
+  .pc-col.bad{background:rgba(248,113,113,.05);border-color:rgba(248,113,113,.25)}
+  .pc-col h4{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .pc-col.good h4{color:var(--good)}
+  .pc-col.bad h4{color:var(--bad)}
+  .pc-col ol{list-style:none;counter-reset:pc}
+  .pc-col ol li{
+    counter-increment:pc;position:relative;padding:6px 0 6px 30px;font-size:14px;color:var(--text);line-height:1.65;
+  }
+  .pc-col ol li::before{
+    content:counter(pc);position:absolute;left:0;top:8px;
+    width:20px;height:20px;border-radius:7px;display:grid;place-items:center;
+    font-size:11.5px;font-weight:700;
+  }
+  .pc-col.good ol li::before{background:rgba(52,211,153,.15);color:var(--good)}
+  .pc-col.bad ol li::before{background:rgba(248,113,113,.15);color:var(--bad)}
+  .pc-note{font-size:13px;color:var(--text-faint);margin-top:8px}
+
+  .summary-card{
+    border-radius:16px;padding:18px 22px;margin:18px 0;
+    background:linear-gradient(135deg,rgba(56,189,248,.10),rgba(45,212,191,.08));
+    border:1px solid rgba(56,189,248,.3);
+  }
+  .summary-card b{display:block;font-size:14px;margin-bottom:6px;color:var(--accent)}
+  .summary-card p{font-size:14.5px;color:var(--text)}
+
+  .closing{
+    margin-top:26px;padding:20px 24px;border-radius:16px;
+    background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.3);
+    font-size:14.5px;color:var(--text);line-height:1.9;
+  }
+  .closing p+p{margin-top:10px}
+  .closing b{color:#c7d2fe}
+
+  /* ---------- gallery ---------- */
+  .gallery{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:12px;margin:18px 0;
+  }
+  .gallery.two{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+  .gallery figure{
+    position:relative;border-radius:14px;overflow:hidden;cursor:zoom-in;
+    border:1px solid var(--border);background:rgba(255,255,255,.03);
+    aspect-ratio:4/3;
+  }
+  .gallery figure:hover{border-color:var(--border-strong);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  .gallery img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .45s cubic-bezier(.2,.6,.2,1);
+  }
+  .gallery figure:hover img{transform:scale(1.06)}
+  .gallery figcaption{
+    position:absolute;left:0;right:0;bottom:0;padding:26px 12px 9px;
+    background:linear-gradient(transparent,rgba(4,8,16,.9));
+    font-size:12.5px;color:#e8edf6;opacity:0;transition:opacity .3s;pointer-events:none;
+  }
+  .gallery figure:hover figcaption,.gallery figure.has-cap figcaption{opacity:1}
+  .zoom-hint{
+    position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:8px;
+    background:rgba(7,11,20,.6);backdrop-filter:blur(6px);display:grid;place-items:center;
+    color:#cbd5e1;font-size:14px;opacity:0;transition:opacity .3s;pointer-events:none;
+  }
+  .gallery figure:hover .zoom-hint{opacity:1}
+  .img-count{
+    display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text-faint);
+    margin:6px 0 0;
+  }
+
+  /* ---------- lightbox ---------- */
+  #lightbox{
+    position:fixed;inset:0;z-index:2000;display:none;place-items:center;
+    background:rgba(4,7,13,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  }
+  #lightbox.open{display:grid}
+  #lightbox img{
+    max-width:92vw;max-height:82vh;border-radius:12px;
+    box-shadow:0 30px 90px rgba(0,0,0,.7);animation:lb-in .3s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes lb-in{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+  .lb-caption{
+    position:absolute;bottom:60px;left:50%;transform:translateX(-50%);
+    font-size:14px;color:var(--text);background:rgba(7,11,20,.7);padding:6px 18px;border-radius:99px;
+    max-width:80vw;text-align:center;
+  }
+  .lb-counter{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--text-dim);letter-spacing:2px}
+  .lb-btn{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:48px;height:48px;border-radius:50%;border:1px solid var(--border-strong);
+    background:rgba(255,255,255,.06);color:var(--text);font-size:20px;cursor:pointer;
+    display:grid;place-items:center;transition:all .25s;user-select:none;
+  }
+  .lb-btn:hover{background:rgba(255,255,255,.14);transform:translateY(-50%) scale(1.08)}
+  .lb-close{top:22px;right:24px;transform:none;font-size:17px}
+  .lb-close:hover{transform:scale(1.08)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+
+  /* ---------- misc ---------- */
+  #backtop{
+    position:fixed;right:22px;bottom:26px;z-index:800;width:46px;height:46px;border-radius:14px;
+    border:1px solid var(--border-strong);background:rgba(7,11,20,.7);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    color:var(--text);font-size:18px;cursor:pointer;opacity:0;pointer-events:none;
+    transition:all .35s;box-shadow:0 8px 28px rgba(0,0,0,.45);
+  }
+  #backtop.show{opacity:1;pointer-events:auto}
+  #backtop:hover{border-color:var(--accent);color:var(--accent)}
+  footer{
+    position:relative;z-index:1;text-align:center;padding:44px 20px 56px;
+    color:var(--text-faint);font-size:13px;border-top:1px solid var(--border);margin-top:30px;
+  }
+  footer b{color:var(--text-dim)}
+  .gallery{animation:fade-up .5s ease both}
+  @keyframes fade-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  section.hospital{animation:fade-up .6s ease both}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand"><span class="dot"></span>山二医见习点</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#linyi">临沂</a>
+      <a href="#qingzhou">青州益都</a>
+      <a href="#jinan5">济南五院</a>
+      <a href="#anqiu">安丘</a>
+      <a href="#jinan960">960 医院</a>
+      <a href="#gaomi">高密</a>
+      <a href="#fuyuan">附院</a>
+      <a href="#changle">昌乐</a>
+      <a href="#jinan4">济南四院</a>
+      <a href="#zhucheng">诸城</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-badge">学长学姐亲历整理 · 2025</div>
+  <h1>山二医见习医院一览</h1>
+  <p class="hero-sub">十个见习医院 · 生活 / 学习 / 住宿全景指南 &nbsp;·&nbsp; 整理 by <b>VIVI</b></p>
+  <div class="hero-stats">
+    <div class="stat"><b>10</b><span>见习医院</span></div>
+    <div class="stat"><b>116</b><span>实拍照片</span></div>
+    <div class="stat"><b>7</b><span>个维度详评临沂</span></div>
+  </div>
+  <div class="disclaimer">
+    <span class="icon">⚠️</span>
+    <p><b>免责声明：</b>本文档于 2025 年整理，内容整理自 22 级及以上年级经验，纯主观评价，不对讹误负责，请慎重辨别后判断。</p>
+  </div>
+  <p class="hero-note">后续 23 级来医院后没来得及更新，有想法整理的同学可以联系原作者。大家仅供参考。</p>
+</header>
+
+<main>
+
+<!-- ================= 1 临沂 ================= -->
+<section class="hospital" id="linyi">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <div>
+        <h2>临沂 · 临沂市人民医院</h2>
+        <div class="tag">现为山二医附属医院 · 信息量最大 · 图文最全</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>临沂改成附属医院之后就没有其他学校来实习了。住医院里的话住宿很好，独立卫浴，通勤非常方便。问了两位学长学姐，<strong>查课有点严，不能逃课和翘课</strong>，考勤在老师那里有 app，严度的话一位觉得受不了一位觉得还好。</p>
+      <p>位置偏一点：打车去市中或北城中心都要 20min 左右，但旁边不远就有一个万达。见习的时候可能要转院区，有一个在市中。水电有点贵，医院食堂不太好吃也有点贵，因为有点偏外卖也不是很好点。</p>
+    </div>
+
+    <h3 class="sub">临沂人民情况</h3>
+    <p class="sec-desc" style="margin-bottom:6px">全篇信息有图文支持，尽可能客观地多方面阐述临沂真实情况。</p>
+    <div class="verify-pill"><span>21 临床验证</span><span>19 麻醉验证</span><span>20 麻醉佐证</span></div>
+    <p class="pc-note">无论哪个医院都有优缺点，不可能让每个人都满意。</p>
+    <div class="gallery" data-gallery="linyi-intro"></div>
+
+    <h3 class="sub">一、搬送行李</h3>
+    <div class="prose">
+      <p>上下楼有<strong>十一个电梯</strong>，去还是离开的时候搬运行李都很方便。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-luggage"></div>
+
+    <h3 class="sub">二、日常消费</h3>
+    <div class="prose">
+      <p>临床的住宿费：人民和附院为一年 <strong>1116 元</strong>，济南和临沂为一年 <strong>883 元</strong>。但临沂人民<strong>空调、打水、洗澡、洗衣机全部免费</strong>，去了基本生活只有吃饭需要花钱，吃饭和学校物价差不多（全年无水卡、澡堂、洗衣机、空调等另外消费）。</p>
+      <p>科教楼已经准备好了免费新拖把、新扫把、新马桶刷等卫生工具，无需自己另外购入。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-cost"></div>
+
+    <h3 class="sub">三、学习</h3>
+    <div class="prose">
+      <p><strong>① 上课：</strong>二楼和三楼都有教室，三楼有四个左右，二楼有一个阶梯教室、一个自修室和两个教室。三楼教室没课可以去上自习，其他教室也可以自习，无强制自习室的说法；自习室可以通宵，离开自己关灯即可。教室内还提供插排和储物柜，可以放书，每个教室有两个中央空调。</p>
+      <p>老师教学质量很好，很多老师都是各个医学院的硕导，给我们上课的基本都是主任医师和副主任医师。咨询学工办老师，老师说临沂的老师非常不错，对我们都特别照顾。学习管理并不严格，基本还是靠自己。</p>
+      <p class="dim"><strong>② 见习：</strong>两个院区——一个是我们住的北城新区，一个是解放路，隔着差不多八九公里，打车 20min，502 公交差不多三十分钟。一般实验课和课堂课都在北城，一部分见习课要去解放路，临床三四个月去了两三次。和在学校一样见习的话午休时间会很少，但不会没时间吃午饭。</p>
+      <p class="dim"><strong>③ 实验：</strong>实验室配置很好很齐全。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-class"></div>
+    <div class="gallery" data-gallery="linyi-lab"></div>
+
+    <h3 class="sub">四、吃饭</h3>
+    <div class="prose">
+      <p><strong>① 食堂：</strong>餐厅有两层，一楼是病区餐厅，二楼是职工和学生餐厅。一楼贵一点，二楼学生餐厅荤菜 6 块、素菜 4 块，主食也很便宜，一顿饭就十块钱左右。后期科教楼负一楼还要建一个学生餐厅（晚上食堂二楼下班，但一楼继续开门，也可以选择其他方式就餐）。</p>
+      <p class="dim"><strong>②</strong> 停车场有小摊，里面有菜煎饼、馄饨、饺子等（七号楼后面停车场小摊那里的菜煎饼很好吃）。</p>
+      <p class="dim"><strong>③</strong> 公交车一站就能到临沂大学，大活我们可以进，进校门三分钟到大活，可以在那边吃饭、买日常用品和水果，耗时加上等车时间十分钟出头。</p>
+      <p class="dim"><strong>④</strong> 点外卖：附近有很多外卖选择，外卖可以放在一楼。</p>
+      <p class="dim"><strong>⑤</strong> 旁边小区楼下有个快餐店，三素一荤 12 块钱，跟餐厅窗口价格差不多。</p>
+      <p class="dim"><strong>⑥</strong> 水果还可以去赶集买，临沂大学门口五天一次集。</p>
+      <p class="dim"><strong>⑦</strong> 医院里面有一个 24h 便利店（九号楼一楼，和食堂在一起），停车场那块还有一个小小超市，和菜煎饼在一个地方。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-canteen"></div>
+    <div class="gallery" data-gallery="linyi-snacks"></div>
+
+    <h3 class="sub">五、日常生活</h3>
+    <div class="prose">
+      <p><strong>① 活动范围：</strong>日常生活就是在科教楼，女生住 17 楼、男生在 18 楼。这栋楼有 11 个电梯：三楼是教室和实验室，二楼是阶梯教室和自习室，临技这类实验课要去 9 号楼三楼上，餐厅在 9 号楼二楼。活动范围很小很方便，科教楼到九号楼大概五分钟路程。</p>
+      <p class="dim"><strong>② 洗衣：</strong>17 楼、18 楼每层各一个洗衣房，内有四个洗衣机和热水，全部免费。洗衣房里面有七八个晾衣杆，不想晾在洗衣房的话，可以买个小衣架把贴身衣物晾在宿舍里。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-laundry"></div>
+    <div class="prose">
+      <p><strong>③ 宿舍：</strong>宿舍比学校 11 号楼小、比 5 号楼大，主要是因为中间有一个桌子。宿舍内有三个大柜子、一个小柜子和三层床的置物架。<strong>独立卫浴</strong>，浴室内配置各种挂钩、墙上有多个置物架，还有一个立式大置物架；有落地窗，阳光和通风都很好，全楼都非常干净。浴室 24h 免费热水没有时间限制，水龙头里也是 24h 热水，洗漱方便。浴室没有公共吹风机，可以买一个去洗衣房或公共卫生间吹头发。</p>
+      <p class="dim">宿舍门是新的、隔音不错且没有吱呀声。床底下有两层鞋架能放八双常穿的鞋，床底还有两个可以上锁的柜子，一人一个；每个床配一个厚床垫，床都是新的没有吱吱声，上下床为楼梯很安全；桌子自带一层可上锁的抽屉。宿舍内提供八个插头（每个床一个、浴室镜子旁一个、置物架旁一个），不存在需要集中充电的情况。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-dorm"></div>
+    <div class="prose">
+      <p class="dim"><strong>④ 快递：</strong>九号楼有丰巢快递柜，有的快递可以送到科教楼一楼。</p>
+      <p class="dim"><strong>⑤ 日常出行：</strong>公交车节假日、周六周日及早高峰晚高峰免费，有共享单车和电单车，打车可以送到宿舍楼下。医院离市中心没那么近，但完全不是郊区，基础建设齐全，周边比新校区好很多。解放路院区那边就是市中心，打车二十分钟；北城这边也有商场，出门两个路口两公里就是滨河路万达；坐公交一站就到临沂大学。</p>
+      <p class="dim"><strong>⑥ 饮水：</strong>每个教室和技能中心都有纯净水饮水机，每个教室一个，平常喝水非常方便；水房里的水也是净化水，没有味道且免费。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-water"></div>
+    <p class="sec-desc"><strong>⑦ 运动设施：</strong>篮球场、网球场、足球场、乒乓球台、跑道设施齐全且离科教楼很近。医院也有羽毛球馆（九号楼四楼，餐厅和技能中心上面），有五个羽毛球场，属于教职工活动场所，可以和老师约着让老师带着进；想自己打的话附近有三个球馆，两个挨在一起约五六公里，打车十分钟，另一个打车 20 分钟。医院里也会举行羽毛球比赛。</p>
+    <div class="gallery" data-gallery="linyi-sports"></div>
+    <div class="prose">
+      <p class="dim"><strong>⑧ 回家：</strong>高铁站打车 20 出头的距离（和学校到潍坊站差不多），火车站比高铁站近一点点，汽车站打车八九块的距离，都不算很远。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-transport"></div>
+    <div class="prose">
+      <p class="dim"><strong>⑨ 空调：</strong>空调免费且已经调整维修。科教楼第一次启用空调可能会有问题，可以跟阿姨或班主任反映；医院发过关于空调运行的文件但没有强制执行，每个宿舍都可自行调节温度。</p>
+      <p class="dim"><strong>⑩ 校园卡和 WiFi：</strong>医院内有 WiFi，教室和走廊信号很好，但宿舍不太好需要用流量。有的同学的校园卡在那边可以直接使用，有的不能，但都可以在临大营业厅换他们的卡，会比我们的套餐更划算。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-ac"></div>
+
+    <h3 class="sub">六、卫生和管理</h3>
+    <div class="prose">
+      <p class="dim">① 教室卫生有专门的保洁打扫。</p>
+      <p class="dim">② 宿舍阿姨确实会查，主要查违规电器，查到会拍个照；查卫生的内容是别囤垃圾，阿姨查寝看着脏会提醒打扫。19 级麻醉学长说之前宿舍很乱的时候阿姨有时候还帮他们打扫。</p>
+      <p class="dim">③ 查夜：楼门一直开放，十点之前阿姨就查完夜了；不在宿舍的话在群里说一声在自习室即可，查不到人阿姨不会为难人；想请假的话班主任也会批假。</p>
+    </div>
+
+    <h3 class="sub">七、其他说明</h3>
+    <div class="prose">
+      <p class="dim">① 临床的老师说过，这个医院已经是咱们学校的附属医院了，其他学校以后都不来了，不存在别的学校再来把我们赶走的情况。</p>
+      <p>② <strong>甲醛问题</strong>：医院找过专业人士来测，证明合格。</p>
+    </div>
+    <div class="gallery" data-gallery="linyi-formaldehyde"></div>
+    <div class="prose">
+      <p class="dim">③ 宿舍不会熄灯不会停水，自习室 24 小时开放，浴室独立卫浴 24h 免费热水。</p>
+      <p class="dim">④ 施工噪音问题：每个人睡眠情况不同，施工噪音可能会影响部分人休息，但基本都是七点半和中午一点半以后，声音也没有最开始那么大，现在基本是在其他楼层施工。偶尔可能也会有人来二楼三楼施工，对上课自习影响不大，一整周大概两三节课有些影响；施工楼层和时间不确定所以没有办法完全统计，与之前相比已经改善很多。</p>
+      <p class="dim">⑤ 全篇图示均为学生日常拍摄，均属于日常可活动范围，并非应付检查时才开启或极个别情况。</p>
+      <p class="dim">⑥ 关于骑车/打车上课：我们住在科教楼，电动车并非必需品，日常上课自习宿舍都在一栋楼上。需要电动车或打车通勤的是 19 级麻醉学长学姐，他们住在 uv 公寓，没有电动车的情况下才有可能打车，一般会买辆电动车。</p>
+      <p class="dim">⑦ 关于返校：如果没有重修补考和缓考，一共需要回三次学校——两次四六级、一次临床水平测试（学校统一安排考试，届时会有专车接送）。实习前准入考试在实习医院考即可。</p>
+      <p class="dim">⑧ 前几日有关于临沂的聊天记录传播广泛，聊天记录里的事情本篇均有提及。拿着聊天记录询问了在临沂的同学和学长学姐，得到的回复均为「个人情感色彩过重」「太片面了」等答复，希望大家根据真实照片及情况自行判断事情真伪。</p>
+      <p class="dim">⑨ 关于住一个月就被赶走只能住烂房子的传闻：21 临床一开始去在河东区住了一个月的单间和双人间，后来科教楼启用就搬到了科教楼 18 楼。临沂市人民医院目前有两个宿舍区：uv 公寓是 19 级麻醉学长所在的实习宿舍（十人间住八人、独立卫浴），科教楼是我们的六人间独立卫浴，不存在烂房子。</p>
+      <p class="dim">⑩ 关于豆腐渣工程：卫生间有一个排气扇，由于风力太大，有的宿舍那块的天花板会掉下来一块，在群里给阿姨报修后当天晚上或第二天就会有人来维修。除此以外宿舍建设良好。</p>
+      <p class="dim">⑪ 宿舍全景视频及聊天记录过大，单独放出，请自行查看。</p>
+      <p class="dim">⑫ 关于这四个实习点到底哪一个更好，如果可以的话大家可以去问一下 20 级的学长学姐，他们正在选实习点，对咱们也有很大的参考价值。咱们是去见习，和实习不一样，只是换个地方上课学习生活见习，具体课程设置情况学工办老师也不太清楚，大家重点关注生活和学习方面即可。</p>
+    </div>
+    <div class="closing">
+      <p><b>最后</b>：造谣成本低廉，我们支持每个人有自己的考虑和想法，但不希望有人欺骗隐瞒、断章取义、错误引导。本篇发出的主要目的为让大家了解临沂的所有真实情况。毕竟每个人的要求都不尽相同，这篇介绍可能也有不够完全准确的地方，但已经尽力咨询和介绍了每一个能想到的细节。</p>
+      <p><b>三年的努力才换来班级能有作为第一名挑选见习点的机会，希望大家慎重考虑，做出自己的选择。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 青州益都中心医院 ================= -->
+<section class="hospital" id="qingzhou">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <div>
+        <h2>青州 · 益都中心医院</h2>
+        <div class="tag">图片资料</div>
+      </div>
+    </div>
+    <p class="sec-desc">以下为学长学姐整理的实拍图片资料。</p>
+    <div class="gallery two" data-gallery="qingzhou"></div>
+  </div>
+</section>
+
+<!-- ================= 3 济南五院 ================= -->
+<section class="hospital" id="jinan5">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <div>
+        <h2>济南五院</h2>
+        <div class="tag">图片资料</div>
+      </div>
+    </div>
+    <p class="sec-desc">以下为学长学姐整理的实拍图片资料。</p>
+    <div class="gallery" data-gallery="jinan5"></div>
+  </div>
+</section>
+
+<!-- ================= 4 安丘人民医院 ================= -->
+<section class="hospital" id="anqiu">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <div>
+        <h2>安丘 · 安丘人民医院</h2>
+        <div class="tag">优缺点总结 + 实拍</div>
+      </div>
+    </div>
+    <div class="pc-grid">
+      <div class="pc-col good">
+        <h4>👍 优点</h4>
+        <ol>
+          <li>宿舍条件好：老公寓有独立卫浴、空调暖气、不限电不停电、六人寝；教学楼服务楼（有电梯）也是独立卫浴、空调暖气、四人寝</li>
+          <li>从宿舍到教室比较近：老公寓步行 10 分钟左右，教学楼服务楼到教室就 1-2 分钟</li>
+          <li>教室环境好，插排多</li>
+          <li>不需要早签到晚签到，上课有雨课堂二维码签到</li>
+          <li>请假容易</li>
+          <li>节假日可以提前放假</li>
+          <li>带教老师好</li>
+          <li>取外卖快递方便</li>
+          <li>学习氛围好</li>
+        </ol>
+        <p class="pc-note">（教学水平医院之间都差不多）</p>
+      </div>
+      <div class="pc-col bad">
+        <h4>👎 缺点</h4>
+        <ol>
+          <li>交通不便利：从潍坊站到安丘人民医院，坐公交 2 个多小时，打车 1 个小时左右</li>
+          <li>食堂饭菜一般 / 不好吃</li>
+          <li>买水果零食之类的不方便</li>
+          <li>宿舍插排少</li>
+          <li>娱乐设施少</li>
+        </ol>
+      </div>
+    </div>
+    <div class="gallery" data-gallery="anqiu"></div>
+  </div>
+</section>
+
+<!-- ================= 5 960 联勤保障医院 ================= -->
+<section class="hospital" id="jinan960">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">05</div>
+      <div>
+        <h2>济南 · 960 联勤保障医院</h2>
+        <div class="tag">图文笔记</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>我们住的是<strong>四人间</strong>，960 是上床下床，毕竟还是没有学校空间大，但是床铺舒适度什么的跟学校没什么区别。</p>
+      <p class="dim">没有独立卫浴相对麻烦一点儿，浴室也确实没有帘子，也没配洗衣机，是我们自己买的。</p>
+      <p class="dim">咱们学校其他专业我还真不清楚，我在宿舍这边只遇到过临床专业的学长学姐们，还有其他学校的同学，可能是咱学校别的专业但没了解过都不认识。</p>
+      <p class="dim">没有 WiFi，没有类似于校园网的设备，只能用自己的流量。</p>
+      <p class="dim">我们宿舍在三楼，教室在五楼，非常近；见习医院就在宿舍家属楼对面，还是很近的。南院区不太会去，而且有电动车的话也不远（我们没去过南院区，这是学姐说的）。</p>
+      <p class="dim">军训没有呢，来了之后就一直在上课，课时安排也没有军训的计划。</p>
+    </div>
+    <div class="gallery" data-gallery="jinan960"></div>
+  </div>
+</section>
+
+<!-- ================= 6 高密人民医院 ================= -->
+<section class="hospital" id="gaomi">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">06</div>
+      <div>
+        <h2>高密 · 高密人民医院</h2>
+        <div class="tag">优缺点总结 + 省流版 + 实拍</div>
+      </div>
+    </div>
+    <div class="pc-grid">
+      <div class="pc-col good">
+        <h4>👍 优点</h4>
+        <ol>
+          <li>独立自习室：一个班两个自习室，一大一小，大自习室每个人都有位置，小自习室先到先得，偶尔开放背诵室</li>
+          <li>宿舍、教室、医院离得近：女生步行三分钟，男生步行十分钟</li>
+          <li>餐厅：14 元自助，红烧肉、猪蹄、鱼、素菜、凉菜、水果、粥随便吃（一人一个小酸奶）</li>
+          <li>取消了课间操</li>
+          <li>带教老师好，见习时间短</li>
+          <li>出门即共享电动车，小吃街大商场 2~3 公里左右，电动车充电很方便（比学校便宜）</li>
+          <li>教室有空调不花钱</li>
+          <li>女生宿舍都在阳面，男生是小公寓</li>
+          <li>离高密站 800 米左右，回学校回家方便</li>
+          <li>科教科前面有 200 米小操场，有篮球框</li>
+          <li>女生宿舍洗衣机不花钱，宿舍用电不花钱（只有空调用电花钱），男生用电均需要电卡</li>
+          <li>取外卖、快递很方便</li>
+        </ol>
+      </div>
+      <div class="pc-col bad">
+        <h4>👎 缺点</h4>
+        <ol>
+          <li>周边玩的地方少</li>
+          <li>几乎只有自己班的同学还有上一届的学长学姐可以交流玩耍</li>
+          <li>暖气不是很热，但可以接受；洗澡冬天很冷（一层四个淋浴头）</li>
+          <li>女生没有独立卫浴，有公共洗澡间、厕所、洗刷间；男生小公寓有</li>
+          <li>女生晾衣服在洗刷间一般晒不到太阳，没有阳台</li>
+        </ol>
+      </div>
+    </div>
+    <div class="summary-card">
+      <b>⚡ 省流版</b>
+      <p>最大的优点就是实习见习管的比较松，适合考研。缺点是女生宿舍没有独立卫浴、洗澡堂没有隔间，但有帘子。吃饭的话中规中矩。</p>
+    </div>
+    <div class="gallery" data-gallery="gaomi"></div>
+  </div>
+</section>
+
+<!-- ================= 7 附院 ================= -->
+<section class="hospital" id="fuyuan">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">07</div>
+      <div>
+        <h2>附院</h2>
+        <div class="tag">图片资料</div>
+      </div>
+    </div>
+    <p class="sec-desc">以下为学长学姐整理的实拍图片资料（含老校五号楼）。</p>
+    <div class="gallery" data-gallery="fuyuan"></div>
+  </div>
+</section>
+
+<!-- ================= 8 昌乐 ================= -->
+<section class="hospital" id="changle">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">08</div>
+      <div>
+        <h2>昌乐</h2>
+        <div class="tag">图片资料</div>
+      </div>
+    </div>
+    <div class="gallery two" data-gallery="changle"></div>
+  </div>
+</section>
+
+<!-- ================= 9 济南四院 ================= -->
+<section class="hospital" id="jinan4">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">09</div>
+      <div>
+        <h2>济南四院</h2>
+        <div class="tag">图片资料</div>
+      </div>
+    </div>
+    <div class="gallery" data-gallery="jinan4"></div>
+  </div>
+</section>
+
+<!-- ================= 10 诸城市人民医院 ================= -->
+<section class="hospital" id="zhucheng">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-num">10</div>
+      <div>
+        <h2>诸城 · 诸城市人民医院</h2>
+        <div class="tag">图片资料</div>
+      </div>
+    </div>
+    <div class="gallery" data-gallery="zhucheng"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>整理 <b>by VIVI</b> · 内容来自 22 级及以上学长学姐经验分享 · 仅供参考</p>
+  <p style="margin-top:6px">本文档于 2025 年整理 · 纯主观评价，不对讹误负责，请慎重辨别后判断</p>
+</footer>
+
+<button id="backtop" title="返回顶部" aria-label="返回顶部">↑</button>
+
+<div id="lightbox" role="dialog" aria-modal="true">
+  <div class="lb-counter" id="lbCounter"></div>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="关闭">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="上一张">‹</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-caption" id="lbCaption"></div>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="下一张">›</button>
+</div>
+
+<script>
+/* ============ 画廊数据：[文件, 说明] ============ */
+const G = {
+  "linyi-intro":[["images/linyi-01.jpg",""],["images/linyi-02.jpg",""]],
+  "linyi-luggage":[["images/linyi-03.jpg",""]],
+  "linyi-cost":[["images/linyi-04.jpg",""]],
+  "linyi-class":[
+    ["images/linyi-05.jpg","上课的教室"],
+    ["images/linyi-06.jpg","教室后的饮水机"],
+    ["images/linyi-07.jpg","也是教室"],
+    ["images/linyi-08.jpg","阶梯教室和自习室都是这种"],
+    ["images/linyi-09.jpg","教室的储物柜"],
+    ["images/linyi-10.jpg","教室后的插座"]
+  ],
+  "linyi-lab":[["images/linyi-11.jpg",""],["images/linyi-12.jpg",""]],
+  "linyi-canteen":[
+    ["images/linyi-13.jpg",""],["images/linyi-14.jpg",""],["images/linyi-15.jpg",""],
+    ["images/linyi-16.jpg",""],["images/linyi-17.jpg",""],["images/linyi-18.jpg",""],["images/linyi-19.jpg",""]
+  ],
+  "linyi-snacks":[["images/linyi-20.jpg",""],["images/linyi-21.jpg",""]],
+  "linyi-laundry":[
+    ["images/linyi-22.jpg",""],["images/linyi-23.jpg",""],["images/linyi-24.jpg",""],
+    ["images/linyi-25.jpg",""],["images/linyi-26.jpg",""],["images/linyi-27.jpg",""]
+  ],
+  "linyi-dorm":[
+    ["images/linyi-28.png",""],["images/linyi-29.png",""],["images/linyi-30.png",""],
+    ["images/linyi-31.png",""],["images/linyi-32.jpg",""],["images/linyi-33.jpg",""],["images/linyi-34.jpg",""]
+  ],
+  "linyi-water":[["images/linyi-35.jpg",""]],
+  "linyi-sports":[
+    ["images/linyi-36.jpg","足球场"],
+    ["images/linyi-37.jpg","篮球场"],
+    ["images/linyi-38.jpg","网球场"],
+    ["images/linyi-39.jpg","跑道"],
+    ["images/linyi-40.jpg","乒乓球台"],
+    ["images/linyi-41.jpg","医院附近羽毛球馆"]
+  ],
+  "linyi-transport":[["images/linyi-42.png",""],["images/linyi-43.png",""]],
+  "linyi-ac":[["images/linyi-44.jpg",""],["images/linyi-45.jpg",""]],
+  "linyi-formaldehyde":[["images/linyi-46.jpg",""]],
+  "qingzhou":[["images/qingzhou-01.png",""]],
+  "jinan5":[
+    ["images/jinan5-01.jpg",""],["images/jinan5-02.jpg",""],["images/jinan5-03.jpg",""],["images/jinan5-04.jpg",""],
+    ["images/jinan5-05.jpg",""],["images/jinan5-06.jpg",""],["images/jinan5-07.jpg",""],["images/jinan5-08.jpg",""],
+    ["images/jinan5-09.jpg",""],["images/jinan5-10.jpg",""],["images/jinan5-11.jpg",""],["images/jinan5-12.jpg",""]
+  ],
+  "anqiu":[
+    ["images/anqiu-01.jpg",""],["images/anqiu-02.jpg",""],["images/anqiu-03.jpg",""],["images/anqiu-04.jpg",""],
+    ["images/anqiu-05.jpg",""],["images/anqiu-06.jpg",""],["images/anqiu-07.jpg",""],["images/anqiu-08.jpg",""]
+  ],
+  "jinan960":[
+    ["images/jinan960-01.png",""],["images/jinan960-02.png",""],["images/jinan960-03.png",""],
+    ["images/jinan960-04.png",""],["images/jinan960-05.png",""],["images/jinan960-06.jpg",""],
+    ["images/jinan960-07.jpg",""],["images/jinan960-08.jpg",""],["images/jinan960-09.jpg",""],
+    ["images/jinan960-10.jpg",""],["images/jinan960-11.jpg",""],["images/jinan960-12.png",""],
+    ["images/jinan960-13.png",""]
+  ],
+  "gaomi":[
+    ["images/gaomi-01.jpg",""],["images/gaomi-02.jpg",""],["images/gaomi-03.jpg",""],["images/gaomi-04.jpg",""],
+    ["images/gaomi-05.jpg",""],["images/gaomi-06.jpg",""],["images/gaomi-07.jpg",""],["images/gaomi-08.jpg",""],
+    ["images/gaomi-09.jpg",""],["images/gaomi-10.jpg",""],["images/gaomi-11.jpg",""],["images/gaomi-12.jpg",""],
+    ["images/gaomi-13.jpg",""]
+  ],
+  "fuyuan":[
+    ["images/fuyuan-01.jpg",""],["images/fuyuan-02.jpg",""],["images/fuyuan-03.jpg",""],["images/fuyuan-04.jpg",""],
+    ["images/fuyuan-05.jpg","老校五号楼"],
+    ["images/fuyuan-06.jpg",""],["images/fuyuan-07.jpg",""],["images/fuyuan-08.jpg",""],
+    ["images/fuyuan-09.jpg",""],["images/fuyuan-10.jpg",""],["images/fuyuan-11.jpg",""],["images/fuyuan-12.jpg",""],
+    ["images/fuyuan-13.jpg",""]
+  ],
+  "changle":[["images/changle-01.png",""]],
+  "jinan4":[["images/jinan4-01.jpg",""],["images/jinan4-02.jpg",""],["images/jinan4-03.jpg",""]],
+  "zhucheng":[
+    ["images/zhucheng-01.png",""],["images/zhucheng-02.jpg",""],["images/zhucheng-03.jpg",""],
+    ["images/zhucheng-04.jpg",""],["images/zhucheng-05.jpg",""],["images/zhucheng-06.jpg",""]
+  ]
+};
+
+/* ============ 渲染画廊 ============ */
+document.querySelectorAll("[data-gallery]").forEach(el=>{
+  const key = el.dataset.gallery;
+  const items = G[key] || [];
+  items.forEach(([src,cap])=>{
+    const fig = document.createElement("figure");
+    if(cap) fig.classList.add("has-cap");
+    const img = document.createElement("img");
+    img.src = src; img.alt = cap || "见习医院实拍照片"; img.loading = "lazy";
+    img.dataset.caption = cap;
+    fig.appendChild(img);
+    const hint = document.createElement("span");
+    hint.className = "zoom-hint"; hint.textContent = "⤢";
+    fig.appendChild(hint);
+    if(cap){
+      const fc = document.createElement("figcaption");
+      fc.textContent = cap; fig.appendChild(fc);
+    }
+    el.appendChild(fig);
+  });
+  if(items.length > 3){
+    const c = document.createElement("p");
+    c.className = "img-count";
+    c.style.gridColumn = "1 / -1";
+    c.textContent = "📷 " + items.length + " 张照片 · 点击查看大图";
+    el.appendChild(c);
+  }
+});
+
+/* ============ Lightbox ============ */
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lbImg");
+const lbCaption = document.getElementById("lbCaption");
+const lbCounter = document.getElementById("lbCounter");
+let lbList = [], lbIdx = 0;
+
+function openLb(img){
+  lbList = Array.from(document.querySelectorAll(".gallery img"));
+  lbIdx = lbList.indexOf(img);
+  showLb();
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function showLb(){
+  const img = lbList[lbIdx];
+  lbImg.src = img.src;
+  lbCaption.textContent = img.dataset.caption || "";
+  lbCaption.style.display = img.dataset.caption ? "" : "none";
+  lbCounter.textContent = (lbIdx+1) + " / " + lbList.length;
+}
+function closeLb(){
+  lb.classList.remove("open");
+  document.body.style.overflow = "";
+}
+function stepLb(d){ lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLb(); }
+
+document.addEventListener("click", e=>{
+  const img = e.target.closest(".gallery img");
+  if(img) openLb(img);
+});
+document.getElementById("lbClose").onclick = closeLb;
+document.getElementById("lbPrev").onclick = e=>{ e.stopPropagation(); stepLb(-1); };
+document.getElementById("lbNext").onclick = e=>{ e.stopPropagation(); stepLb(1); };
+lb.addEventListener("click", e=>{ if(e.target === lb) closeLb(); });
+document.addEventListener("keydown", e=>{
+  if(!lb.classList.contains("open")) return;
+  if(e.key === "Escape") closeLb();
+  else if(e.key === "ArrowLeft") stepLb(-1);
+  else if(e.key === "ArrowRight") stepLb(1);
+});
+
+/* ============ 进度条 / 返回顶部 ============ */
+const progress = document.getElementById("progress");
+const backtop = document.getElementById("backtop");
+window.addEventListener("scroll", ()=>{
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+  backtop.classList.toggle("show", h.scrollTop > 600);
+}, {passive:true});
+backtop.onclick = ()=> window.scrollTo({top:0, behavior:"smooth"});
+
+/* ============ 导航 scrollspy ============ */
+const navLinks = Array.from(document.querySelectorAll("#navLinks a"));
+const sections = navLinks.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);
+const spy = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+    }
+  });
+},{rootMargin:"-30% 0px -60% 0px"});
+sections.forEach(s=>spy.observe(s));
+</script>
+</body>
+</html>
